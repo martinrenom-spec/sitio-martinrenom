@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Martín Renom &amp; Asociados</title>
+<meta name="description" content="Estudio de arquitectura, planificación urbana y desarrollo en Buenos Aires. Del masterplan a la obra terminada.">
+<link rel="canonical" href="https://martinrenom.com.ar/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Idea de layout: la imagen manda. Portada a sangre con pase de proyectos, tipografia liviana
+   y chica, mucho blanco, proyectos en piezas verticales. Un solo tono, sin color de acento. */
+:root{
+  --paper:#ffffff; --ink:#141414; --muted:#6b6b6b; --line:#e2e2e0; --panel:#f4f4f2;
+  --accent:#141414; --accent-ink:#ffffff; --mark:#fff1a8;
+  --display:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(18px,4vw,64px); --max:1480px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0e0e0e; --ink:#f2f2f0; --muted:#a0a09c; --line:#2a2a28; --panel:#181817;
+  --accent:#f2f2f0; --accent-ink:#0e0e0e; --mark:#5a4d00; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#0e0e0e; --ink:#f2f2f0; --muted:#a0a09c; --line:#2a2a28; --panel:#181817;
+  --accent:#f2f2f0; --accent-ink:#0e0e0e; --mark:#5a4d00; color-scheme:dark;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:400;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+h1,h2,h3{font-family:var(--display);font-weight:300;text-wrap:balance;margin:0;letter-spacing:-.01em}
+.ph{background:var(--mark);color:#141414;padding:0 .25em;font-style:normal}
+figure{margin:0}
+figcaption{font-size:13px;color:var(--muted);padding:8px 0 0}
+
+.draft{background:var(--panel);color:var(--muted);font-size:12.5px;padding:6px var(--gutter);display:flex;gap:6px 18px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.draft b{font-weight:500;color:var(--ink)}
+
+header.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px 36px;min-height:64px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.brand{font-weight:500;font-size:15px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;margin-right:auto;line-height:1.3}
+.brand small{display:none}
+nav.main{display:flex;gap:30px;flex-wrap:wrap;font-size:15px}
+nav.main a{text-decoration:none;padding:4px 0;border-bottom:1px solid transparent}
+nav.main a:hover{border-color:var(--ink)}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font:400 15px var(--body);padding:11px 20px;text-decoration:none;border:1px solid var(--accent);cursor:pointer}
+.btn:hover{background:transparent;color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--accent);color:var(--accent-ink)}
+.top .btn{padding:8px 16px;font-size:14px}
+
+/* portada a sangre */
+.hero{position:relative;height:clamp(440px,80vh,900px);overflow:hidden;background:#111;color:#fff}
+.hero .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+.hero .slides img.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.hero .slides img{transition:none}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.74) 0%,rgba(0,0,0,.3) 42%,rgba(0,0,0,0) 70%);pointer-events:none}
+.hero .over{position:absolute;left:0;right:0;bottom:0;z-index:2;padding-bottom:clamp(22px,4vw,48px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 40px;align-items:end;margin:0 auto}
+.hero h1{font-weight:200;font-size:clamp(44px,8vw,128px);line-height:.98;letter-spacing:-.03em;color:#fff}
+.hero p.lead{margin:14px 0 0;font-size:clamp(16px,1.5vw,20px);font-weight:300;max-width:34em;color:#fff}
+.hero .side{display:grid;gap:12px;justify-items:end;text-align:right}
+.hero .cap{font-size:14px;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:2px}
+.hero .dots{display:flex;gap:8px}
+.hero .dots button{width:34px;height:20px;padding:9px 0;background:transparent;border:0;cursor:pointer}
+.hero .dots button::before{content:"";display:block;height:2px;background:rgba(255,255,255,.45)}
+.hero .dots button[aria-pressed="true"]::before{background:#fff}
+.hero .dots button:focus-visible{outline:2px solid #fff}
+
+/* presentacion */
+.intro{padding:clamp(48px,7vw,110px) 0 0}
+.intro p.big{font-size:clamp(24px,3.1vw,46px);font-weight:300;line-height:1.22;letter-spacing:-.015em;margin:0;max-width:24em}
+.intro p.small{margin:22px 0 0;max-width:38em;color:var(--muted)}
+
+section.block{padding:clamp(56px,8vw,120px) 0 0}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px 40px;flex-wrap:wrap;margin-bottom:clamp(20px,2.6vw,36px);border-top:1px solid var(--ink);padding-top:14px}
+.head h2{font-weight:400;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+.head p{margin:0;max-width:40em;color:var(--muted);font-size:15.5px}
+
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px clamp(20px,3vw,48px)}
+.four h3{font-weight:300;font-size:clamp(22px,2.1vw,30px);margin-bottom:10px}
+.four p{margin:0;font-size:15.5px;color:var(--muted)}
+
+/* proyectos: piezas verticales */
+.chips{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:22px}
+.chip{font:400 15px var(--body);padding:4px 0;border:0;border-bottom:1px solid transparent;background:transparent;color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,2.6vw,40px) clamp(10px,1.4vw,22px)}
+.card{text-decoration:none;display:block}
+.card .im{overflow:hidden;background:var(--panel)}
+.card img{width:100%;aspect-ratio:3/4.4;object-fit:cover;transition:transform .8s ease}
+.card:hover img{transform:scale(1.035)}
+@media (prefers-reduced-motion:reduce){.card img{transition:none}.card:hover img{transform:none}}
+.card h3{font-weight:400;font-size:18px;margin-top:12px;letter-spacing:0}
+.card .meta{font-size:14px;color:var(--muted);display:block}
+.card p{display:none}
+.tag{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+.doors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 clamp(10px,1.4vw,22px)}
+.doors a{padding:18px 0 22px;text-decoration:none;border-top:1px solid var(--line);display:grid;gap:4px}
+.doors b{font-weight:300;font-size:clamp(20px,1.9vw,26px);line-height:1.2}
+.doors span{font-size:14.5px;color:var(--muted)}
+.doors a:hover{border-color:var(--ink)}
+
+.studio{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px clamp(32px,6vw,96px)}
+.studio p{margin:0 0 14px;max-width:36em}
+.studio .me{margin:0 0 22px}
+.studio .me img{width:150px;height:150px;object-fit:cover;border-radius:50%}
+.studio figure+p{font-size:clamp(20px,1.9vw,26px);font-weight:300;line-height:1.35}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:104px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.tl li:first-child{border-top:1px solid var(--line)}
+.tl time{font-variant-numeric:tabular-nums;color:var(--muted)}
+
+.idea{padding:6px 0 22px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px 56px}
+.idea h3{font-size:clamp(22px,2.2vw,30px)}
+.idea p{margin:0 0 14px;max-width:38em}
+.idea p.src{color:var(--muted);font-size:14.5px;margin-top:10px}
+.idea summary{cursor:pointer;border-bottom:1px solid var(--ink);display:inline-block;margin-bottom:14px;list-style:none}
+.idea summary::-webkit-details-marker{display:none}
+.idea details[open] summary{display:none}
+
+.contact{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px clamp(32px,6vw,96px)}
+form{display:grid;gap:18px}
+label{display:grid;gap:6px;font-size:14px;color:var(--muted)}
+input,select,textarea{font:400 16px var(--body);color:var(--ink);background:var(--paper);border:0;border-bottom:1px solid var(--ink);padding:9px 0;border-radius:0;width:100%}
+select{padding:9px 0}
+textarea{min-height:84px;resize:vertical;border:1px solid var(--line);padding:10px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px}
+.out{background:var(--panel);padding:18px;display:none;gap:12px}
+.out.on{display:grid}
+.out pre{margin:0;white-space:pre-wrap;font:400 15px/1.5 var(--body)}
+.note{font-size:13px;color:var(--muted);margin:0}
+.trampa{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+#estado{font-size:15px;color:var(--ink)}
+.btn[disabled]{opacity:.5;pointer-events:none}
+address{font-style:normal;display:grid;gap:16px;font-size:16px;align-content:start}
+address b{display:block;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400}
+
+footer{margin-top:clamp(56px,8vw,120px);border-top:1px solid var(--line);padding:22px 0 36px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* ficha */
+#detail{display:none;padding-bottom:40px}
+body.is-detail #home{display:none}
+body.is-detail #detail{display:block}
+#detail .big img{width:100%;height:clamp(360px,74vh,860px);object-fit:cover}
+.back{display:inline-block;margin:26px 0 22px;font-size:14.5px;text-decoration:none;border-bottom:1px solid var(--ink)}
+#detail h1{font-weight:200;font-size:clamp(38px,6.4vw,104px);line-height:1;letter-spacing:-.03em;margin-top:8px}
+#detail .sub{font-size:clamp(19px,1.9vw,26px);font-weight:300;line-height:1.35;max-width:30em;margin:18px 0 0}
+.sheet{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:28px clamp(32px,6vw,96px);margin-top:clamp(28px,4vw,64px)}
+dl{margin:0}
+dl div{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+dl div:first-child{border-top:1px solid var(--line)}
+dt{color:var(--muted)}dd{margin:0}
+.sheet .txt p{margin:0 0 16px;max-width:36em;font-size:17.5px}
+.gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.4vw,22px);margin-top:clamp(28px,4vw,64px)}
+.gal img{width:100%;object-fit:cover;aspect-ratio:16/10}
+.gal figure.wide{grid-column:1/-1}
+.gal figure.wide img{aspect-ratio:auto}
+.gal figure.tall img{aspect-ratio:auto}
+#detail .big.contain{background:var(--panel)}
+#detail .big.contain img{object-fit:contain}
+.galv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.4vw,22px);margin-top:clamp(10px,1.4vw,22px)}
+.galv img{width:100%;aspect-ratio:9/16;object-fit:cover}
+.art{columns:4 240px;column-gap:clamp(12px,1.6vw,26px)}
+.art figure{break-inside:avoid;margin:0 0 clamp(18px,2.2vw,32px)}
+.art img{width:100%;height:auto}
+.art figcaption{font-size:14px;color:var(--ink)}
+.art figcaption span{color:var(--muted)}
+.gal figure.plan img{object-fit:contain;background:#fff;aspect-ratio:16/10}
+.gal figure.lamina{grid-column:1/-1}
+.gal figure.lamina img{aspect-ratio:auto;object-fit:contain;background:#fff;max-height:92vh;width:auto;max-width:100%;margin:0 auto}
+
+@media (max-width:980px){
+  .grid,.doors,.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .studio,.idea,.contact,.sheet{grid-template-columns:minmax(0,1fr)}
+  .hero .over{grid-template-columns:minmax(0,1fr)}
+  .hero .side{justify-items:start;text-align:left}
+  nav.main{order:3;width:100%;gap:20px;font-size:14px}
+}
+@media (max-width:520px){
+  .galv{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gal,.two,.doors,.four{grid-template-columns:minmax(0,1fr)}
+  dl div,.tl li{grid-template-columns:96px minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Martín Renom &amp; Asociados<small>Arquitectura · Planificación urbana · Desarrollo</small></a>
+    <nav class="main" aria-label="Secciones">
+      <a href="#que-hacemos">Qué hacemos</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#estudio">Estudio</a>
+      <a href="#ideas">Ideas</a>
+    </nav>
+    <a class="btn" href="#contacto">Contanos tu proyecto</a>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero" id="inicio">
+    <div class="slides" id="slides">
+      <img class="on" src="img/remeros-1.jpg" alt="Campus universitario sobre la Pista de los Remeros, Tigre">
+      <img src="img/rincon-4.jpg" alt="Calle interna de Nuevo Rincón, Neuquén">
+      <img src="img/autodromo-4.jpg" alt="Plaza y paseo del Eco Distrito Ribereño, Buenos Aires">
+      <img src="img/mayo-h.jpg" alt="Frente del edificio sobre Avenida de Mayo, Buenos Aires" style="object-position:center 30%">
+    </div>
+    <div class="over wrap">
+      <div>
+        <h1>Hacemos ciudad.</h1>
+        <p class="lead">Arquitectura, planificación urbana y desarrollo. Del masterplan a la obra terminada, con un solo equipo.</p>
+      </div>
+      <div class="side">
+        <a class="cap" id="hcap" href="#remeros">Pista de los Remeros, Tigre</a>
+        <div class="dots" id="dots" role="group" aria-label="Cambiar imagen de portada">
+          <button type="button" aria-pressed="true" aria-label="Pista de los Remeros"></button>
+          <button type="button" aria-pressed="false" aria-label="Nuevo Rincón"></button>
+          <button type="button" aria-pressed="false" aria-label="Eco Distrito Ribereño"></button>
+          <button type="button" aria-pressed="false" aria-label="Edificio Avenida de Mayo"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <p class="big">Martín Renom &amp; Asociados es un estudio de arquitectura, planificación urbana y desarrollo, fundado en Buenos Aires en 1996.</p>
+      <p class="small">Miramos cada encargo con cuatro oficios a la vez. El que proyecta sabe cuánto cuesta construir, y el que hace los números conoce la obra.</p>
+    </div>
+  </section>
+
+  <section class="block" id="proyectos">
+    <div class="wrap">
+      <div class="head">
+        <h2>Proyectos</h2>
+        
+      </div>
+      <div class="chips" role="group" aria-label="Filtrar proyectos">
+        <button class="chip" type="button" data-f="todos" aria-pressed="true">Todos</button>
+        <button class="chip" type="button" data-f="Planificación urbana" aria-pressed="false">Planificación urbana</button>
+        <button class="chip" type="button" data-f="Desarrollo" aria-pressed="false">Desarrollo</button>
+        <button class="chip" type="button" data-f="Arquitectura" aria-pressed="false">Arquitectura</button>
+      </div>
+      <div class="grid" id="cards"></div>
+    </div>
+  </section>
+
+  <section class="block" id="que-hacemos">
+    <div class="wrap">
+      <div class="head">
+        <h2>Qué hacemos</h2>
+      </div>
+      <div class="four">
+        <div><h3>Arquitectura</h3><p>Proyecto y documentación de edificios, oficinas e interiores corporativos.</p></div>
+        <div><h3>Planificación urbana</h3><p>Masterplans y planes de sector para gobiernos, organismos y privados.</p></div>
+        <div><h3>Desarrollo inmobiliario</h3><p>Prefactibilidad, modelo de negocio y estructuración para dueños de tierra e inversores.</p></div>
+        <div><h3>Obra</h3><p>Gerenciamiento y entrega llave en mano. Contratamos y coordinamos a las constructoras, y el comitente trata con un solo responsable.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="estudio">
+    <div class="wrap">
+      <div class="head">
+        <h2>El estudio</h2>
+        <p>Fundado en 1996 por el arquitecto Martín Renom. Buenos Aires, Argentina.</p>
+      </div>
+      <div class="studio">
+        <div>
+          <figure class="me"><img src="img/martin.jpg" alt="Martín Renom" width="297" height="297"><figcaption>Arq. Martín Renom</figcaption></figure>
+          <p>Martín Renom es arquitecto por la Universidad de Buenos Aires, planificador urbano, desarrollador y constructor, con más de 40 años de oficio. Fue docente en la UBA hasta 1996, cuando abrió su propio estudio, que trabajó desde viviendas familiares hasta edificios de oficinas y proyectos de escala urbana.</p>
+          <p>Entre 2015 y 2019 integró el Consejo Directivo de ACUMAR, con rango de subsecretario de Estado, donde llevó adelante el plan estratégico urbano para el saneamiento de la cuenca Matanza-Riachuelo. De ese trabajo salió el libro "De Frente al Río", que presentó en el World Urban Forum de Kuala Lumpur en 2018.</p>
+          <p>En Canal de los Remeros, el Distrito Tecnológico y de las Artes, el Barrio Olímpico y el Autódromo de la Ciudad de Buenos Aires trabajó como proyectista y autor de la idea.</p>
+        </div>
+        <ul class="tl">
+          <li><time>1983</time><span>Arquitecto, Universidad de Buenos Aires.</span></li>
+          <li><time>1983 – 1996</time><span>Docente en distintas cátedras de la UBA. Obras propias y colaboraciones con los estudios Llauró-Urgell y Julio Torcello.</span></li>
+          <li><time>1996</time><span>Abre su propio estudio. Hasta 2000 se dedica al desarrollo y la venta de grandes unidades en Palermo Chico, Palermo, Avenida del Libertador y Figueroa Alcorta. Hasta 2001 trabaja con el estudio del arquitecto Julio Torcello en el proyecto de la Autopista Ribereña.</span></li>
+          <li><time>2002 – 2015</time><span>Obras y desarrollos propios.</span></li>
+          <li><time>2015 – 2019</time><span>Director de ACUMAR, con rango de subsecretario de Estado.</span></li>
+          <li><time>2016</time><span>Hábitat III, conferencia internacional de vivienda y urbanismo.</span></li>
+          <li><time>2017</time><span>Organizador del Urban Thinkers Campus de ONU Hábitat en la Usina del Arte. Clase en Glasgow School of Architecture sobre vivienda social sustentable.</span></li>
+          <li><time>2018</time><span>Presenta "De Frente al Río" en el World Urban Forum de Kuala Lumpur y en Canning House, Londres.</span></li>
+          <li><time>2019 – hoy</time><span>Desarrollos urbanos en Neuquén: Ecos del Limay, en Senillosa, y Nuevo Rincón, en la capital. Asesoramiento para el masterplan de Puerto Nuevo, en Paraná. Proyecto urbano Vuelta de Rocha, en La Boca, y proyecto para el Arzobispado en Puerto Madero.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="ideas">
+    <div class="wrap">
+      <div class="head">
+        <h2>Ideas</h2>
+        <p>Notas breves sobre ciudad, tierra y obra. Opiniones firmadas, para discutir.</p>
+      </div>
+      <article class="idea">
+        <div>
+          <h3>El Plan de Desarrollo como idea y perspectiva</h3>
+          <p class="src">Martín Renom. Publicado en "De Frente al Río. Plan de Desarrollo 2019-2023", ACUMAR.</p>
+        </div>
+        <div class="body">
+          <p>El presente documento es un reflejo del proceso vivo que se desarrolla en el ámbito de la Cuenca Matanza Riachuelo buscando lograr los consensos necesarios para impulsar un modelo de desarrollo sustentable en el territorio. El Plan de Desarrollo es una propuesta participativa que incorpora a la Cuenca en el proceso de Planificación Estratégica Nacional, se integrará con el Plan Integral de Saneamiento Ambiental de ACUMAR, dialoga con el Plan Integral de Ordenamiento y está enmarcado en la Nueva Agenda Urbana 2030, planteada por ONU-Hábitat en Quito 2016. Toma como premisa el fundamental de que "no hay saneamiento sin Planificación del territorio" y tiene como objetivo principal instrumentar una estrategia de impacto territorial consensuada entre los responsables de la planificación de los distintos municipios de la Cuenca para así avanzar en conjunto con una idea rectora para el territorio, priorizando siempre la mejora en la calidad de vida de sus habitantes.</p>
+          <details>
+            <summary>Seguir leyendo</summary>
+            <p>En una primera instancia se elaboró un diagnóstico de la situación actual de todas las dimensiones del territorio, logrando tener una definición clara de cómo se encuentra. En su elaboración, se estudiaron ejemplos de antecedentes con problemáticas similares de carácter internacional, así como también se tuvieron en cuenta los planes municipales, provinciales y nacionales y los planes y programas estratégicos sectoriales que fueron previamente elaborados para la Cuenca. También se contemplaron los instrumentos legales que afectan el uso y la organización del territorio, como son las leyes vinculadas a la regulación del uso de suelo de cada municipio y a la creación de áreas protegidas. Se tomaron en cuenta los resultados de varias instancias de procesos participativos, como fueron el "Campus de Pensadores Urbanos" de ONU-Hábitat, organizado por ACUMAR bajo el lema "De Frente al Río" en mayo de 2017 y el evento con el mismo nombre realizado por ACUMAR en el Foro Mundial de Urbanismo, también de ONU-Hábitat, en Kuala Lumpur en febrero 2018. Fueron partícipes de ambas instancias representantes de todos los actores de injerencia en la Cuenca.</p>
+            <p>Tras un análisis de los problemas y objetivos de cada eje central, se proponen lineamientos estratégicos a ser incorporados por todos los actores, con el fin de avanzar en la recuperación del territorio y su desarrollo. El próximo paso es la etapa participativa, donde los municipios incluirán sus ideas propias de planificación del territorio, potenciando así el alcance y los resultados de esta propuesta.</p>
+          </details>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="entradas">
+    <div class="wrap">
+      <div class="head"><h2>¿Qué te trae por acá?</h2></div>
+      <div class="doors">
+        <a href="#contacto" data-door="empresa"><b>Mi empresa necesita una obra</b><span>Sedes, oficinas, edificios corporativos</span></a>
+        <a href="#contacto" data-door="terreno"><b>Tengo un terreno</b><span>Qué se puede hacer y cuánto vale hacerlo</span></a>
+        <a href="#contacto" data-door="inversion"><b>Quiero invertir o desarrollar</b><span>Proyectos estructurados, etapa por etapa</span></a>
+        <a href="#contacto" data-door="casa"><b>Quiero hacer mi casa</b><span>Proyecto y dirección</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contacto">
+    <div class="wrap">
+      <div class="head">
+        <h2>Contanos tu proyecto</h2>
+        <p>Cuatro datos alcanzan para una primera conversación.</p>
+      </div>
+      <div class="contact">
+        <form id="f" novalidate>
+          <label for="tipo">¿Qué te trae por acá?
+            <select id="tipo" name="tipo">
+              <option value="empresa">Mi empresa necesita una obra</option>
+              <option value="terreno">Tengo un terreno</option>
+              <option value="inversion">Quiero invertir o desarrollar</option>
+              <option value="casa">Quiero hacer mi casa</option>
+            </select>
+          </label>
+          <div id="dyn" class="two"></div>
+          <div class="two">
+            <label for="nombre">Nombre<input id="nombre" name="nombre" autocomplete="name" required></label>
+            <label for="contacto-dato">Teléfono o correo<input id="contacto-dato" name="contacto" required></label>
+          </div>
+          <label for="msg">Algo más que quieras contarnos<textarea id="msg" name="msg"></textarea></label>
+          <label class="trampa" aria-hidden="true">No completar<input id="sitio" name="sitio" tabindex="-1" autocomplete="off"></label>
+          <div><button class="btn" id="enviar" type="submit">Enviar la consulta</button></div>
+          <p class="note" id="err" role="alert"></p>
+          <div class="out" id="out" aria-live="polite">
+            <p class="note" id="estado"></p>
+            <pre id="outtxt"></pre>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Seguir por WhatsApp</a>
+              <button class="btn ghost" type="button" id="copy">Copiar el texto</button>
+            </div>
+          </div>
+        </form>
+        <address>
+          <div><b>Estudio</b>O'Higgins 2613, piso 1 D<br>Ciudad de Buenos Aires, Argentina</div>
+          <div><b>Teléfono y WhatsApp</b>+54 9 11 4423 2979</div>
+          <div><b>Correo</b><a href="mailto:contacto@martinrenom.com.ar">contacto@martinrenom.com.ar</a></div>
+        </address>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main id="detail"><div id="dbody"></div></main>
+
+<footer><div class="wrap"><span>Martín Renom &amp; Asociados</span><span>Buenos Aires, Argentina</span></div></footer>
+
+<script>
+const P=[
+ {id:"remeros",t:"Pista de los Remeros",lugar:"Tigre, Buenos Aires",tipo:"Planificación urbana",
+  res:"Sanear el espejo de agua y ordenar 40 hectáreas de tierra improductiva con un campus universitario, un centro médico, deporte y vivienda.",
+  cover:"img/remeros-2.jpg",tile:"img/remeros-1.jpg",pos:"42% center",
+  datos:[["Lugar","Tigre, Buenos Aires"],["Superficie","Unas 40 ha a lo largo de 2.000 m, entre el Puente Liniers y el río Luján"],["Programa","10 ha de deporte, 10 ha de campus universitario y centro médico, 20 ha de vivienda, oficinas y comercio"],["Presentación","2024"],["Estado","Proyecto"],["Comitente","Secretaría de Deportes"]],
+  txt:["La pista de remo de Tigre está rodeada de tierra sin uso y su espejo de agua necesita saneamiento y mantenimiento. El proyecto resuelve las dos cosas juntas: el desarrollo urbano de los bordes es el que hace posible recuperar el agua.","El plan divide el área en tres partes. Una queda para el deporte, con el remo en primer lugar. Otra recibe el primer campus universitario y centro médico de Tigre. La tercera suma vivienda, oficinas y comercio, con los servicios de agua, cloacas y electricidad que hoy faltan."],
+  gal:[["img/remeros-1.jpg","Edificio del campus frente a la pista","wide"],["img/remeros-3.jpg","Paseo sobre la costa, de noche",""],["img/remeros-4.jpg","Paseo sobre la costa y muelle de remo",""]]},
+ {id:"eco-distrito-ribereno",t:"Eco Distrito Ribereño",lugar:"Comuna 8, Ciudad de Buenos Aires",tipo:"Planificación urbana",
+  res:"El primer frente urbano de la Ciudad sobre el Riachuelo, en torno al Autódromo: un barrio nuevo y equipamiento público abierto al vecino.",
+  cover:"img/autodromo-1.jpg",tile:"img/autodromo-4.jpg",pos:"72% center",
+  datos:[["Lugar","Entorno del Autódromo, Comuna 8, Ciudad de Buenos Aires"],["Figura","Iniciativa privada, octubre de 2021"],["Uso público","2.245.000 m²: autódromo, museos, deporte, ferias y convenciones"],["Uso privado","750.000 m²: eco barrio de 670.000 m² y centro comercial de 80.000 m²"],["Vivienda","14.800 unidades de 40 a 90 m², en cuatro unidades de gestión"],["Estado","Proyecto"]],
+  txt:["En la Comuna 8 el Riachuelo queda detrás de grandes predios cerrados y de la autopista 27 de Febrero. El vecino casi no llega al agua. La propuesta abre ese borde y lo convierte en un frente de ciudad, apoyada en el Plan Urbano Ambiental y en el Plan de Comuna 8.","El eco barrio suma vivienda para sectores medios y trabajadores esenciales, con escuelas, centros de salud y comercio a distancia de caminata. Alrededor se ordenan el autódromo renovado, un sector cultural, el parque deportivo y un centro de convenciones, unidos por un paseo peatonal a lo largo del río."],
+  gal:[["img/autodromo-2.jpg","Vista aérea del conjunto sobre el Riachuelo","wide"],["img/autodromo-4.jpg","Plaza y paseo del eco barrio","wide"],["img/autodromo-3.jpg","Paseo ribereño del eco barrio","wide"]]},
+ {id:"ecos-del-limay",t:"Ecos del Limay",lugar:"Senillosa, Neuquén",tipo:"Desarrollo",
+  res:"Un distrito urbano de 157 hectáreas entre la Ruta 22 y el río Limay, pensado como nueva centralidad del corredor Neuquén–Arroyito.",
+  cover:"img/ecos-4.jpg",tile:"img/ecos-5.jpg",
+  datos:[["Lugar","Senillosa, Neuquén"],["Superficie","157 ha, de la Ruta 22 al río Limay"],["Programa","Estación de tren proyectada, centro cívico, campus universitario, centro de salud, eje comercial y hotel, town houses, departamentos y lotes"],["Etapas","Cuatro fases en unos nueve años"],["Estado","En desarrollo"],["Autor","Arquitecto Martín Renom & Asociados S.A."]],
+  txt:["Senillosa integra 157 hectáreas a su ejido urbano. En lugar de un loteo, el plan propone un distrito completo, armado por piezas que se apoyan entre sí: la estación y el centro cívico como ancla, el campus y el centro de salud, y un eje comercial con hotel.","La vivienda acompaña cada etapa con town houses, edificios bajos y lotes urbanizados sobre una trama caminable con plazas. El recorrido termina en el río, con un parque y un frente de agua de uso público."],
+  gal:[["img/ecos-2.jpg","Town houses alrededor de un espacio verde común","wide"],["img/ecos-3.jpg","Campus y centro educativo",""],["img/ecos-5.jpg","Departamentos de densidad media",""],["img/ecos-plan.jpg","Masterplan general por etapas","lamina"]]},
+ {id:"nuevo-rincon",t:"Nuevo Rincón",lugar:"Ciudad de Neuquén",tipo:"Desarrollo",
+  res:"Masterplan residencial en dos etapas junto al barrio Rincón de Emilio, entre la Ruta 22 y el río Neuquén. Propuesta de 30 hectáreas, no desarrollada.",
+  cover:"img/rincon-1.jpg",tile:"img/rincon-1.jpg",pos:"30% center",
+  datos:[["Lugar","Rincón de Emilio, ciudad de Neuquén"],["Superficie","30 ha"],["Programa","Lotes residenciales, macrolotes, área comercial y camino de la costa"],["Año","2025"],["Estado","Propuesta, no desarrollada"]],
+  txt:["La Ruta 22 parte el predio en dos: de un lado queda el borde del barrio existente, del otro el monte que baja al río Neuquén. El plan toma esa división y la usa como etapas.","La primera etapa ordena los lotes en abanico sobre la ruta, con un área comercial en el acceso. La segunda avanza hacia el río con macrolotes entre la arboleda y un camino de la costa. El estudio hizo el análisis de sitio, el masterplan, la propuesta de ajuste normativo y la estructura del negocio."],
+  gal:[["img/rincon-3.jpg","Planta general con las dos etapas","plan"],["img/rincon-4.jpg","Calle interna",""],["img/rincon-2.jpg","Calle interna al atardecer",""]]},
+ {id:"casa-rovirosa",t:"Casa Familia Rovirosa",lugar:"Barrio Altos de Campo Grande",tipo:"Arquitectura",
+  res:"Una casa en planta baja, cerrada hacia la calle y transparente hacia el jardín.",
+  cover:"img/casar-1.jpg",tile:"img/casar-4.jpg",
+  datos:[["Lugar","Barrio Altos de Campo Grande"],["Superficie","180 m²"],["Año","2019"],["Estado","Proyecto"]],
+  txt:["La familia pidió una casa en planta baja, abierta al jardín. El proyecto la arma alrededor de un patio interior: desde la calle el frente es cerrado y da privacidad, y hacia adentro todo es vidrio.","La cocina se integra con el estar, que sale a la galería y a la pileta. Los dormitorios de los hijos se pensaron uno por uno, cada cual con sus particularidades."],
+  gal:[["img/casar-2.jpg","Frente y acceso","wide"],["img/casar-3.jpg","Galería",""],["img/casar-6.jpg","Contrafrente con pileta",""],["img/casar-4.jpg","Estar",""],["img/casar-5.jpg","Patio interior",""],["img/casar-7.jpg","Planta","plan"]]},
+ {id:"casa-altos",t:"Casa Altos",lugar:"Barrio Altos de Campo Grande",tipo:"Arquitectura",
+  res:"Casa de 360 m² en dos plantas, con tres dormitorios, terraza, estudio y pileta.",
+  cover:"img/altos-f1.jpg",tile:"img/altos-f2.jpg",pos:"40% center",
+  datos:[["Lugar","Barrio Altos de Campo Grande"],["Superficie","360 m²"],["Año","2016"],["Estado","Construida"]],
+  txt:["La casa se desarrolla en dos plantas. Arriba están los tres dormitorios, amplios, y una terraza grande. Abajo, el estar se abre a la galería, la parrilla y la pileta, que quedan integradas en un mismo espacio exterior.","El programa se completa con un estudio y una habitación de servicio."],
+  gal:[["img/altos-f2.jpg","Contrafrente, con la galería y la pileta","wide"],["img/altos-f3.jpg","Estar",""],["img/altos-f4.jpg","Patio de ingreso",""],["img/altos-f5.jpg","El hall, abierto al patio",""],["img/altos-f6.jpg","Cocina",""]],
+  galv:[["img/altos-v1.jpg","Hall"],["img/altos-v2.jpg","Hall hacia el jardín"],["img/altos-v4.jpg","Hall y estar"],["img/altos-v3.jpg","Ingreso, de noche"]],
+  gal2:[["img/altos-1.jpg","Render de proyecto, frente",""],["img/altos-3.jpg","Render de proyecto, acceso lateral",""]]},
+ {id:"casa-recodo",t:"Casa Recodo",lugar:"Barrio del Recodo",tipo:"Arquitectura",
+  res:"Tres dormitorios, playroom y dependencia de servicio en 130 m².",
+  cover:"img/recodo-1.jpg",tile:"img/recodo-2.jpg",
+  datos:[["Lugar","Barrio del Recodo"],["Superficie","130 m²"],["Año","2010"],["Estado","Construida"]],
+  txt:["El interés de esta casa está en la planta: en 130 m² entran tres dormitorios cómodos, uno de ellos en suite. Los otros dos comparten un baño que también funciona como toilette del acceso, y entre ambos hay un playroom para los chicos.","Tiene además living comedor, cocina con comedor diario y dependencia de servicio. En el mismo barrio se construyeron dos casas similares, cada una con sus variantes."],
+  gal:[["img/recodo-3.jpg","Frente",""],["img/recodo-4.jpg","Detalle de ventana en esquina",""],["img/recodo-5.jpg","Planta","plan"]]},
+ {id:"avenida-de-mayo",t:"Edificio Avenida de Mayo",lugar:"Ciudad de Buenos Aires",tipo:"Arquitectura",
+  res:"Reciclaje de un edificio histórico del centro: se conservó la fachada original y detrás se construyó un edificio nuevo de once pisos.",
+  cover:"img/mayo-3.jpg",tile:"img/mayo-3.jpg",pos:"38% center",fit:"contain",
+  datos:[["Lugar","Avenida de Mayo y Rivadavia, Ciudad de Buenos Aires"],["Obra","Reciclaje con fachada conservada y edificio nuevo de once pisos"],["Cocheras","Sistema inteligente computarizado, traído de Alemania en 2018"],["Estado","Construido"],["Programa","Oficinas y un loft en el último piso"],["Propietario","Orlando Canido"]],
+  txt:["Sobre Avenida de Mayo la fachada original quedó en pie. El edificio nuevo, de once pisos, se levanta por detrás y retirado de la línea de frente. Aloja oficinas y, en el último piso, un loft.","El lote va de calle a calle y el proyecto trabaja en distintos niveles. Se entra a pie por Avenida de Mayo y por Rivadavia; los autos entran y salen por Rivadavia.","Fue el primer edificio de la Ciudad de Buenos Aires con cocheras inteligentes computarizadas, un sistema traído de Alemania en 2018."],
+  gal:[["img/mayo-i1.jpg","Planta de oficinas",""],["img/mayo-i2.jpg","Planta de oficinas con el patio vidriado, en obra",""]],
+  galv:[["img/mayo-v1.jpg","Frente vidriado del edificio nuevo"],["img/mayo-v3.jpg","El patio interno, hacia arriba"],["img/mayo-v2.jpg","Patio interno, en obra"],["img/mayo-v4.jpg","Estructura de las cocheras"],["img/mayo-v5.jpg","La fachada conservada, desde arriba"],["img/mayo-v6.jpg","El frente durante la obra"],["img/mayo-4.jpg","El edificio terminado"]],
+  gal2:[["img/mayo-1.jpg","Fotomontaje de proyecto, frente sobre Avenida de Mayo (2014)","tall"],["img/mayo-2.jpg","Fotomontaje de proyecto, frente sobre Rivadavia (2014)","tall"]]}
+];
+const $=s=>document.querySelector(s);
+function cards(f){
+  $("#cards").innerHTML=P.filter(p=>f==="todos"||p.tipo===f).map(p=>`<a class="card" href="#${p.id}">
+   <div class="im"><img src="${p.tile||p.cover}" alt="${p.t}" loading="lazy" style="object-position:${p.pos||'center'}"></div>
+   <h3>${p.t}</h3><span class="meta">${p.lugar}</span></a>`).join("");
+}
+document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  cards(b.dataset.f);
+}));
+function detail(p){
+  $("#dbody").innerHTML=`<figure class="big ${p.fit||''}"><img src="${p.cover}" alt="${p.t}"></figure>
+   <div class="wrap"><a class="back" href="#proyectos">← Todos los proyectos</a>
+   <div class="tag">${p.tipo} · ${p.lugar}</div><h1>${p.t}</h1><p class="sub">${p.res}</p>
+   <div class="sheet"><dl>${p.datos.map(d=>`<div><dt>${d[0]}</dt><dd>${d[1]}</dd></div>`).join("")}</dl>
+   <div class="txt">${p.txt.map(t=>`<p>${t}</p>`).join("")}<a class="btn" href="#contacto">Contanos tu proyecto</a></div></div>
+   <div class="gal">${p.gal.map(g=>`<figure class="${g[2]}"><img src="${g[0]}" alt="${g[1]}" loading="lazy"><figcaption>${g[1]}</figcaption></figure>`).join("")}</div>
+   ${p.galv?`<div class="galv">${p.galv.map(g=>`<figure><img src="${g[0]}" alt="${g[1]}" loading="lazy"><figcaption>${g[1]}</figcaption></figure>`).join("")}</div>`:""}
+   ${p.gal2?`<div class="gal">${p.gal2.map(g=>`<figure class="${g[2]}"><img src="${g[0]}" alt="${g[1]}" loading="lazy"><figcaption>${g[1]}</figcaption></figure>`).join("")}</div>`:""}</div>`;
+}
+function route(){
+  const h=location.hash.slice(1), p=P.find(x=>x.id===h);
+  if(p){detail(p);document.body.classList.add("is-detail");window.scrollTo(0,0);}
+  else{const was=document.body.classList.contains("is-detail");document.body.classList.remove("is-detail");
+    if(was&&h){const el=document.getElementById(h);if(el)el.scrollIntoView();}}
+}
+window.addEventListener("hashchange",route);
+
+const F={
+ empresa:[["empresa","Empresa"],["obra","Tipo de obra"],["sup","Superficie aproximada"],["cuando","Cuándo querés empezar"]],
+ terreno:[["ubic","Ubicación del terreno"],["sup","Superficie"],["idea","Qué te gustaría hacer"]],
+ inversion:[["busca","Tipo de proyecto que buscás"],["zona","Zona de interés"]],
+ casa:[["ubic","Ubicación del lote"],["sup","Superficie pensada"],["cuando","Cuándo querés empezar"]]
+};
+function dyn(){ $("#dyn").innerHTML=F[$("#tipo").value].map(x=>`<label for="d-${x[0]}">${x[1]}<input id="d-${x[0]}" data-l="${x[1]}"></label>`).join(""); $("#out").classList.remove("on"); }
+$("#tipo").addEventListener("change",dyn);
+document.querySelectorAll("[data-door]").forEach(a=>a.addEventListener("click",()=>{$("#tipo").value=a.dataset.door;dyn();}));
+$("#f").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const n=$("#nombre").value.trim(), c=$("#contacto-dato").value.trim();
+  if(!n||!c){$("#err").textContent="Falta tu nombre y un teléfono o correo para poder responderte.";$("#out").classList.remove("on");return;}
+  $("#err").textContent="";
+  const tipo=$("#tipo").selectedOptions[0].text;
+  const lines=[tipo+"."];
+  document.querySelectorAll("#dyn input").forEach(i=>{if(i.value.trim())lines.push(i.dataset.l+": "+i.value.trim());});
+  if($("#msg").value.trim())lines.push($("#msg").value.trim());
+  lines.push("Contacto: "+n+", "+c);
+  const t=lines.join("\n");
+  $("#outtxt").textContent=t;
+  $("#wa").href="https://wa.me/5491144232979?text="+encodeURIComponent(t);
+  $("#out").classList.add("on");
+  const b=$("#enviar"); b.disabled=true; b.textContent="Enviando…";
+  $("#estado").textContent="";
+  try{
+    const r=await fetch("/api/contacto",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({nombre:n,contacto:c,tipo:tipo,texto:t,sitio:$("#sitio").value})});
+    const j=await r.json().catch(()=>({}));
+    if(r.ok&&j.ok){
+      $("#estado").textContent="Recibimos tu consulta. Te respondemos a la brevedad. Abajo queda el texto por si preferís seguir por WhatsApp.";
+      b.textContent="Enviada";
+    }else{ throw new Error("falló"); }
+  }catch(_){
+    $("#estado").textContent="No pudimos enviarla desde acá. Mandanos el texto de abajo por WhatsApp o escribinos a contacto@martinrenom.com.ar.";
+    b.disabled=false; b.textContent="Reintentar";
+  }
+});
+$("#copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText($("#outtxt").textContent);$("#copy").textContent="Copiado";}catch(_){ $("#copy").textContent="Seleccioná el texto y copialo";}});
+
+const S=[["Pista de los Remeros, Tigre","#remeros"],["Nuevo Rincón, Neuquén","#nuevo-rincon"],["Eco Distrito Ribereño, Buenos Aires","#eco-distrito-ribereno"],["Edificio Avenida de Mayo, Buenos Aires","#avenida-de-mayo"]];
+let si=0,timer=null;
+function show(i){si=i;document.querySelectorAll("#slides img").forEach((im,k)=>im.classList.toggle("on",k===i));
+  document.querySelectorAll("#dots button").forEach((b,k)=>b.setAttribute("aria-pressed",k===i));
+  $("#hcap").textContent=S[i][0];$("#hcap").href=S[i][1];}
+function auto(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;clearInterval(timer);timer=setInterval(()=>show((si+1)%S.length),6000);}
+document.querySelectorAll("#dots button").forEach((b,k)=>b.addEventListener("click",()=>{show(k);auto();}));
+auto();
+cards("todos");dyn();route();
+</script>
+</body>
+</html>

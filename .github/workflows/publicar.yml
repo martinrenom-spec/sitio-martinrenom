@@ -1,0 +1,19 @@
+name: Publicar sitio
+
+on:
+  push:
+    branches: [main]
+    paths: ['public/**', '.github/workflows/publicar.yml']
+  workflow_dispatch:
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publicar en Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 6cde0189657cf5749a48d6d17478cdf1
+          command: pages deploy public --project-name=martinrenom --branch=main --commit-dirty=true
