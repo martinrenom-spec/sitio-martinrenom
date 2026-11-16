@@ -17,3 +17,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 6cde0189657cf5749a48d6d17478cdf1
           command: pages deploy public --project-name=martinrenom --branch=main --commit-dirty=true
+
+# Publicacion automatica activa desde el 16 de noviembre de 2026.
