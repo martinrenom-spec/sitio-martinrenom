@@ -11,11 +11,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Publicar en Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 6cde0189657cf5749a48d6d17478cdf1
-          command: pages deploy public --project-name=martinrenom --branch=main --commit-dirty=true
 
-# Publicacion automatica activa desde el 16 de noviembre de 2026.
+      - name: Revisar la llave de Cloudflare
+        env:
+          T: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$T" ]; then
+            echo "::error::El repositorio no tiene cargado el secreto CLOUDFLARE_API_TOKEN"
+            exit 1
+          fi
+          echo "::notice::Secreto presente (largo ${#T})"
+          code=$(curl -s -o /tmp/verify.json -w '%{http_code}' \
+            -H "Authorization: Bearer $T" \
+            https://api.cloudflare.com/client/v4/user/tokens/verify)
+          echo "::notice::Verificacion de la llave: HTTP $code"
+          if [ "$code" != "200" ]; then
+            echo "::error::La llave no es valida. Respuesta: $(head -c 300 /tmp/verify.json)"
+            exit 1
+          fi
+
+      - name: Publicar en Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: 6cde0189657cf5749a48d6d17478cdf1
+        run: |
+          set +e
+          npx --yes wrangler@4 pages deploy public \
+            --project-name=martinrenom --branch=main --commit-dirty=true > /tmp/salida.txt 2>&1
+          estado=$?
+          cat /tmp/salida.txt
+          if [ $estado -ne 0 ]; then
+            echo "::error::Fallo la publicacion: $(tail -c 500 /tmp/salida.txt | tr '\n' ' ')"
+            exit $estado
+          fi
+          echo "::notice::Sitio publicado"
