@@ -135,6 +135,7 @@ textarea{min-height:84px;resize:vertical;border:1px solid var(--line);padding:10
 .out.on{display:grid}
 .out pre{margin:0;white-space:pre-wrap;font:400 15px/1.5 var(--body)}
 .note{font-size:13px;color:var(--muted);margin:0}
+.aviso{margin-top:clamp(20px,2.4vw,32px);padding-top:12px;border-top:1px solid var(--line)}
 .trampa{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 #estado{font-size:15px;color:var(--ink)}
 .btn[disabled]{opacity:.5;pointer-events:none}
@@ -398,7 +399,7 @@ const P=[
   cover:"img/ecos-4.jpg",tile:"img/ecos-5.jpg",
   datos:[["Lugar","Senillosa, Neuquén"],["Superficie","157 ha, de la Ruta 22 al río Limay"],["Programa","Estación de tren proyectada, centro cívico, campus universitario, centro de salud, eje comercial y hotel, town houses, departamentos y lotes"],["Etapas","Cuatro fases en unos nueve años"],["Estado","En desarrollo"],["Autor","Arquitecto Martín Renom & Asociados S.A."]],
   txt:["Senillosa integra 157 hectáreas a su ejido urbano. En lugar de un loteo, el plan propone un distrito completo, armado por piezas que se apoyan entre sí: la estación y el centro cívico como ancla, el campus y el centro de salud, y un eje comercial con hotel.","La vivienda acompaña cada etapa con town houses, edificios bajos y lotes urbanizados sobre una trama caminable con plazas. El recorrido termina en el río, con un parque y un frente de agua de uso público."],
-  gal:[["img/ecos-comercial.jpg","Centro comercial y paseo peatonal",""],["img/ecos-townhouses.jpg","Town houses entre el arbolado",""],["img/ecos-3.jpg","Campus y centro educativo",""],["img/ecos-5.jpg","Departamentos de densidad media",""],["img/ecos-plan.jpg","Masterplan general por etapas","lamina"]]},
+  gal:[["img/ecos-paseo.jpg","Paseo arbolado junto al agua","wide"],["img/ecos-comercial.jpg","Centro comercial y paseo peatonal",""],["img/ecos-townhouses.jpg","Town houses entre el arbolado",""],["img/ecos-calle.jpg","Town houses con locales en planta baja","wide"],["img/ecos-3.jpg","Campus y centro educativo",""],["img/ecos-viviendas.jpg","Departamentos de densidad media",""],["img/ecos-plan.jpg","Masterplan general por etapas","lamina"]]},
  {id:"nuevo-rincon",t:"Nuevo Rincón",lugar:"Ciudad de Neuquén",tipo:"Desarrollo",
   res:"Masterplan residencial en dos etapas junto al barrio Rincón de Emilio, entre la Ruta 22 y el río Neuquén. Propuesta de 30 hectáreas, no desarrollada.",
   cover:"img/rincon-1.jpg",tile:"img/rincon-1.jpg",pos:"30% center",
@@ -452,7 +453,8 @@ function detail(p){
    <div class="txt">${p.txt.map(t=>`<p>${t}</p>`).join("")}<a class="btn" href="#contacto">Contanos tu proyecto</a></div></div>
    <div class="gal">${p.gal.map(g=>`<figure class="${g[2]}"><img src="${g[0]}" alt="${g[1]}" loading="lazy"><figcaption>${g[1]}</figcaption></figure>`).join("")}</div>
    ${p.galv?`<div class="galv">${p.galv.map(g=>`<figure><img src="${g[0]}" alt="${g[1]}" loading="lazy"><figcaption>${g[1]}</figcaption></figure>`).join("")}</div>`:""}
-   ${p.gal2?`<div class="gal">${p.gal2.map(g=>`<figure class="${g[2]}"><img src="${g[0]}" alt="${g[1]}" loading="lazy"><figcaption>${g[1]}</figcaption></figure>`).join("")}</div>`:""}</div>`;
+   ${p.gal2?`<div class="gal">${p.gal2.map(g=>`<figure class="${g[2]}"><img src="${g[0]}" alt="${g[1]}" loading="lazy"><figcaption>${g[1]}</figcaption></figure>`).join("")}</div>`:""}
+   <p class="note aviso">Las imágenes ilustran el carácter del proyecto y pueden no corresponder a su desarrollo definitivo.</p></div>`;
 }
 function route(){
   const h=location.hash.slice(1), p=P.find(x=>x.id===h);
