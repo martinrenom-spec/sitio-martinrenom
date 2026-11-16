@@ -45,3 +45,5 @@ jobs:
             exit $estado
           fi
           echo "::notice::Sitio publicado"
+
+# Llave cargada el 16 de noviembre de 2026.
