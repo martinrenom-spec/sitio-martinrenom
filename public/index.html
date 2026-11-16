@@ -210,10 +210,10 @@ dt{color:var(--muted)}dd{margin:0}
 <main id="home">
   <section class="hero" id="inicio">
     <div class="slides" id="slides">
-      <img class="on" src="img/remeros-1.jpg" alt="Campus universitario sobre la Pista de los Remeros, Tigre">
+      <img class="on" src="img/mayo-h.jpg" alt="Frente del edificio sobre Avenida de Mayo, Buenos Aires" style="object-position:center 30%">
+      <img src="img/remeros-1.jpg" alt="Campus universitario sobre la Pista de los Remeros, Tigre">
       <img src="img/rincon-4.jpg" alt="Calle interna de Nuevo Rincón, Neuquén">
       <img src="img/autodromo-4.jpg" alt="Plaza y paseo del Eco Distrito Ribereño, Buenos Aires">
-      <img src="img/mayo-h.jpg" alt="Frente del edificio sobre Avenida de Mayo, Buenos Aires" style="object-position:center 30%">
     </div>
     <div class="over wrap">
       <div>
@@ -221,7 +221,7 @@ dt{color:var(--muted)}dd{margin:0}
         <p class="lead">Arquitectura, planificación urbana y desarrollo. Del masterplan a la obra terminada, con un solo equipo.</p>
       </div>
       <div class="side">
-        <a class="cap" id="hcap" href="#remeros">Pista de los Remeros, Tigre</a>
+        <a class="cap" id="hcap" href="#avenida-de-mayo">Edificio Avenida de Mayo, Buenos Aires</a>
         <div class="dots" id="dots" role="group" aria-label="Cambiar imagen de portada">
           <button type="button" aria-pressed="true" aria-label="Pista de los Remeros"></button>
           <button type="button" aria-pressed="false" aria-label="Nuevo Rincón"></button>
@@ -396,7 +396,7 @@ const P=[
   gal:[["img/autodromo-2.jpg","Vista aérea del conjunto sobre el Riachuelo","wide"],["img/autodromo-4.jpg","Plaza y paseo del eco barrio","wide"],["img/autodromo-3.jpg","Paseo ribereño del eco barrio","wide"]]},
  {id:"ecos-del-limay",t:"Ecos del Limay",lugar:"Senillosa, Neuquén",tipo:"Desarrollo",
   res:"Un distrito urbano de 157 hectáreas entre la Ruta 22 y el río Limay, pensado como nueva centralidad del corredor Neuquén–Arroyito.",
-  cover:"img/ecos-4.jpg",tile:"img/ecos-5.jpg",
+  cover:"img/ecos-4.jpg",tile:"img/ecos-paseo.jpg",
   datos:[["Lugar","Senillosa, Neuquén"],["Superficie","157 ha, de la Ruta 22 al río Limay"],["Programa","Estación de tren proyectada, centro cívico, campus universitario, centro de salud, eje comercial y hotel, town houses, departamentos y lotes"],["Etapas","Cuatro fases en unos nueve años"],["Estado","En desarrollo"],["Autor","Arquitecto Martín Renom & Asociados S.A."]],
   txt:["Senillosa integra 157 hectáreas a su ejido urbano. En lugar de un loteo, el plan propone un distrito completo, armado por piezas que se apoyan entre sí: la estación y el centro cívico como ancla, el campus y el centro de salud, y un eje comercial con hotel.","La vivienda acompaña cada etapa con town houses, edificios bajos y lotes urbanizados sobre una trama caminable con plazas. El recorrido termina en el río, con un parque y un frente de agua de uso público."],
   gal:[["img/ecos-paseo.jpg","Paseo arbolado junto al agua","wide"],["img/ecos-comercial.jpg","Centro comercial y paseo peatonal",""],["img/ecos-townhouses.jpg","Town houses entre el arbolado",""],["img/ecos-calle.jpg","Town houses con locales en planta baja","wide"],["img/ecos-3.jpg","Campus y centro educativo",""],["img/ecos-viviendas.jpg","Departamentos de densidad media",""],["img/ecos-plan.jpg","Masterplan general por etapas","lamina"]]},
@@ -504,7 +504,7 @@ $("#f").addEventListener("submit",async e=>{
 });
 $("#copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText($("#outtxt").textContent);$("#copy").textContent="Copiado";}catch(_){ $("#copy").textContent="Seleccioná el texto y copialo";}});
 
-const S=[["Pista de los Remeros, Tigre","#remeros"],["Nuevo Rincón, Neuquén","#nuevo-rincon"],["Eco Distrito Ribereño, Buenos Aires","#eco-distrito-ribereno"],["Edificio Avenida de Mayo, Buenos Aires","#avenida-de-mayo"]];
+const S=[["Edificio Avenida de Mayo, Buenos Aires","#avenida-de-mayo"],["Pista de los Remeros, Tigre","#remeros"],["Nuevo Rincón, Neuquén","#nuevo-rincon"],["Eco Distrito Ribereño, Buenos Aires","#eco-distrito-ribereno"]];
 let si=0,timer=null;
 function show(i){si=i;document.querySelectorAll("#slides img").forEach((im,k)=>im.classList.toggle("on",k===i));
   document.querySelectorAll("#dots button").forEach((b,k)=>b.setAttribute("aria-pressed",k===i));
